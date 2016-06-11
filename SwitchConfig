@@ -1,0 +1,45 @@
+---DELETE_CONFIG---
+enable
+erase startup-config
+delete flash:vlan.dat
+reload
+
+---CONFIG_NAME---
+enable 
+configure terminal
+hostname naam
+
+---CONFIG STATIC IP TO L3S---
+enable
+conf t
+interface G0/0
+ip address ip snm
+
+---ENABLEMODE SECURITY---
+enable
+conf t
+service password-encryption
+enable password cisco
+
+---CONSOLE PASSWORD---
+conf t
+line con 0
+password ""
+login
+end
+
+---TELNET PASSWORD---
+conf t
+username "" password ""
+line vty 0 4
+login local
+end
+
+---CONFIG DEFAULT GATEWAY---
+enable 
+conf t
+ip default-gateway ...
+end
+
+---save!!!---
+copy running-config startup-config
